@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#18243a">
+  <meta name="description" content="Il tuo percorso personale per imparare il russo, da zero al livello B1.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>Russo — Il mio percorso</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">Я</span><div><strong>Russo</strong><small>Il tuo percorso verso il B1</small></div></div>
+    <button id="installBtn" class="icon-btn hidden" aria-label="Installa app">＋</button>
+  </header>
+
+  <main id="app">
+    <section id="home" class="view active">
+      <div class="hero">
+        <p class="eyebrow">IL TUO PERCORSO</p>
+        <h1>Un passo alla volta.<br><span>Поехали!</span></h1>
+        <p class="muted">Impara il russo con lezioni progressive, verifiche e ripassi intelligenti.</p>
+        <div class="progress-wrap"><div class="progress-label"><span>Progressi del percorso</span><strong id="progressText">0%</strong></div><div class="progress-track"><div id="progressBar"></div></div></div>
+      </div>
+      <div class="section-heading"><div><p class="eyebrow">OGGI</p><h2>La tua prossima attività</h2></div></div>
+      <article class="next-card">
+        <div class="lesson-icon">АБ</div>
+        <div class="grow"><span class="tag" id="nextTag">PRIMA VALUTAZIONE</span><h3 id="nextTitle">Scopri il tuo livello</h3><p id="nextDesc" class="muted">Una breve verifica per calibrare il percorso.</p></div>
+        <button id="startNext" class="round-arrow" aria-label="Inizia">→</button>
+      </article>
+      <div class="stats-grid">
+        <div class="stat-card"><strong id="wordCount">0</strong><span>Parole salvate</span></div>
+        <div class="stat-card"><strong id="grammarCount">0</strong><span>Regole salvate</span></div>
+        <div class="stat-card"><strong id="lessonCount">0</strong><span>Lezioni completate</span></div>
+      </div>
+      <div class="section-heading"><div><p class="eyebrow">IL METODO</p><h2>Come crescerai</h2></div></div>
+      <div class="method-list">
+        <div><span>01</span><p><b>Studia</b><small>Lezioni brevi e progressive.</small></p></div>
+        <div><span>02</span><p><b>Verifica</b><small>Quiz per individuare gli errori.</small></p></div>
+        <div><span>03</span><p><b>Consolida</b><small>Ripassi e archivi personali.</small></p></div>
+      </div>
+    </section>
+
+    <section id="lessons" class="view">
+      <div class="page-head"><p class="eyebrow">PROGRAMMA</p><h1>Lezioni</h1><p class="muted">Un percorso che si adatta ai risultati. Questa è la prima unità: il programma si amplierà progressivamente.</p></div>
+      <div id="lessonList" class="stack"></div>
+    </section>
+
+    <section id="quiz" class="view">
+      <div class="page-head"><p class="eyebrow">ALLENAMENTO</p><h1>Verifiche</h1><p class="muted">Controlla ciò che sai e individua cosa ripassare.</p></div>
+      <article class="panel"><h3>Verifica iniziale</h3><p class="muted">Serve a capire da dove partire. Non è un esame e non devi prepararti.</p><button id="placementBtn" class="primary full">Inizia il test di livello</button></article>
+      <article class="panel"><h3>Quiz di ripasso</h3><p class="muted">Domande sulle prime nozioni di russo.</p><button id="reviewQuizBtn" class="secondary full">Avvia quiz rapido</button></article>
+      <div id="quizArea"></div>
+    </section>
+
+    <section id="vocabulary" class="view">
+      <div class="page-head"><p class="eyebrow">IL TUO LESSICO</p><h1>Vocabolario</h1><p class="muted">Ogni parola che aggiungi resta nel tuo archivio su questo dispositivo.</p></div>
+      <form id="wordForm" class="panel form-grid">
+        <label>Parola in russo<input id="wordRu" required placeholder="например: книга"></label>
+        <label>Traduzione italiana<input id="wordIt" required placeholder="libro"></label>
+        <label>Genere / nota<input id="wordNote" placeholder="femminile, plurale…"></label>
+        <button class="primary full" type="submit">＋ Aggiungi parola</button>
+      </form>
+      <div class="search-row"><input id="wordSearch" placeholder="Cerca nel vocabolario…"></div>
+      <div id="wordList" class="stack compact"></div>
+    </section>
+
+    <section id="grammar" class="view">
+      <div class="page-head"><p class="eyebrow">LE REGOLE</p><h1>Grammatica</h1><p class="muted">Un archivio separato per conservare spiegazioni ed esempi.</p></div>
+      <form id="grammarForm" class="panel form-grid">
+        <label>Regola<input id="grammarTitle" required placeholder="Es. Il genere dei nomi"></label>
+        <label>Spiegazione<textarea id="grammarBody" required rows="3" placeholder="Scrivi la regola in italiano…"></textarea></label>
+        <label>Esempio<textarea id="grammarExample" rows="2" placeholder="дом — casa"></textarea></label>
+        <button class="primary full" type="submit">＋ Salva regola</button>
+      </form>
+      <div id="grammarList" class="stack compact"></div>
+    </section>
+
+    <section id="ai" class="view">
+      <div class="page-head"><p class="eyebrow">ASSISTENTE</p><h1>AI tutor</h1><p class="muted">Usa l'AI per chiarire dubbi, creare esempi e preparare esercizi.</p></div>
+      <article class="panel">
+        <div class="ai-head"><span class="ai-dot"></span><div><b>Gemini</b><small>Connessione tramite API key personale</small></div></div>
+        <label>Chiave API Gemini<input id="geminiKey" type="password" autocomplete="off" placeholder="Incolla la tua chiave API"></label>
+        <p class="tiny muted">La chiave resta solo in memoria finché la pagina è aperta. La quota gratuita dipende dal modello e dai limiti di Google. Non inserire dati sensibili.</p>
+        <label>La tua domanda<textarea id="aiPrompt" rows="4" placeholder="Spiegami la differenza tra ты e вы con esempi semplici…"></textarea></label>
+        <button id="askGemini" class="primary full">Chiedi a Gemini</button>
+        <div id="aiResult" class="ai-result hidden"></div>
+      </article>
+      <article class="panel">
+        <h3>Confronta con altri tutor</h3>
+        <p class="muted">ChatGPT e Claude possono essere consultati dalle loro app o dai siti ufficiali. Le API per integrarli automaticamente richiedono in genere crediti separati.</p>
+        <div class="button-row"><button id="copyPrompt" class="secondary">Copia domanda</button><button id="openChatGPT" class="secondary">Apri ChatGPT</button><button id="openClaude" class="secondary">Apri Claude</button></div>
+      </article>
+    </section>
+
+    <section id="settings" class="view">
+      <div class="page-head"><p class="eyebrow">DATI E PREFERENZE</p><h1>Impostazioni</h1><p class="muted">I dati sono salvati localmente nel browser di questo telefono.</p></div>
+      <article class="panel">
+        <h3>Backup dei tuoi progressi</h3><p class="muted">Esporta un file JSON per conservare o trasferire il tuo archivio.</p>
+        <button id="exportBtn" class="secondary full">Esporta backup</button>
+        <label class="file-label">Importa un backup<input id="importFile" type="file" accept="application/json"></label>
+      </article>
+      <article class="panel">
+        <h3>Il tuo obiettivo</h3><p class="muted">Traguardo attuale: B1. In futuro potremo estendere il programma al B2 senza cancellare i progressi.</p>
+        <div class="info-line"><span>Livello stimato</span><b id="levelLabel">Da valutare</b></div>
+        <div class="info-line"><span>Attività completate</span><b id="completedLabel">0</b></div>
+      </article>
+      <article class="panel danger-zone"><h3>Ripristina app</h3><p class="muted">Cancella tutti i dati salvati su questo dispositivo. Prima esporta un backup, se vuoi conservarli.</p><button id="resetBtn" class="danger full">Cancella i miei dati</button></article>
+      <p class="tiny muted center">Versione iniziale · I dati non sono sincronizzati tra dispositivi.</p>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Navigazione principale">
+    <button data-view="home" class="nav-item active"><span>⌂</span><small>Home</small></button>
+    <button data-view="lessons" class="nav-item"><span>▤</span><small>Lezioni</small></button>
+    <button data-view="quiz" class="nav-item"><span>✓</span><small>Test</small></button>
+    <button data-view="vocabulary" class="nav-item"><span>А</span><small>Parole</small></button>
+    <button data-view="grammar" class="nav-item"><span>文</span><small>Regole</small></button>
+    <button data-view="ai" class="nav-item"><span>✳</span><small>AI</small></button>
+  </nav>
+  <script src="app.js"></script>
+</body>
+</html>
